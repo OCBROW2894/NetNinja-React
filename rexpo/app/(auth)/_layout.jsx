@@ -4,7 +4,7 @@ import React from 'react'
 const AuthLayout = () => {
   return (
     <View>
-      <Text>AutLayout</Text>
+      <Text>AuthLayout</Text>
     </View>
   )
 }
