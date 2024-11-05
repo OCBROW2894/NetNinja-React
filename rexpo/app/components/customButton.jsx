@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 import React from 'react'
 
-const customButton = () => {
+const CustomButton = () => {
   return (
-    <View>
-      <Text>customButton</Text>
-    </View>
+    <TouchableOpacity className={'bg-secondary rounded-xl min-h-[62px] items-center justify-center'}>
+      <Text>CustomButton</Text>
+    </TouchableOpacity>
   )
 }
 
-export default customButton
+export default CustomButton
