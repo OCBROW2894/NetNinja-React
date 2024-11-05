@@ -4,7 +4,7 @@ import React from 'react'
 const CustomButton = () => {
   return (
     <TouchableOpacity className={'bg-secondary rounded-xl min-h-[62px] items-center justify-center'}>
-      <Text>CustomButton</Text>
+      <Text className="text-primary font-psemibold text-lg">CustomButton</Text>
     </TouchableOpacity>
   )
 }
