@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const FormField = () => {
+const FormField = ({title, value, otherStyles, placeholder, handleChangeText, ...props}) => {
   return (
     <View className="space-y-2">
       <Text className="text-base text-gray-100 font-pmedium">FormField</Text>
