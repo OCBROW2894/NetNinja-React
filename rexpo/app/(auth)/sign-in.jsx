@@ -1,9 +1,13 @@
 import { View, Text, ScrollView, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
+import FormField from '../components/FormField'
 
 const SignIn = () => {
+  const [form, setform] = useState({
+    email: '',
+    password: ''})
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
@@ -15,6 +19,8 @@ const SignIn = () => {
           />
 
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log in to Aora</Text>
+
+          <FormField />
         </View>
       </ScrollView>
     </SafeAreaView>
