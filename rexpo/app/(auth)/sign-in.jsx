@@ -12,10 +12,11 @@ const SignIn = () => {
     password: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const submit= () => {
 
   }
-  
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
