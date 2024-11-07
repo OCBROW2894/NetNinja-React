@@ -32,7 +32,7 @@ const SignIn = () => {
           title="Password"
           value={form.password}
           setValue={(e) => setform({...form, password: e})}
-          otherStyles="mt-7"
+          otherStyles="mt-7 w-full"
           />
     
         </View>
