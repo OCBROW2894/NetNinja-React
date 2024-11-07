@@ -5,16 +5,17 @@ import { images } from '../../constants'
 import FormField from '../components/FormField'
 
 const SignIn = () => {
-  const [form, setform] = useState({
-    email: '',
-    password: ''})
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full justify-center items-center h-full px-4">
+        <View className="w-full flex justify-center items-center h-full px-4 my-6">
           <Image
             source={images.logo}
-            className="w-[115px] h-[35px]"
+            className="w-[115px] h-[34px]"
             resizeMode="contain"
           />
 
@@ -23,7 +24,7 @@ const SignIn = () => {
           <FormField
           title="Email"
           value={form.email}
-          setValue={(e) => setform({...form, email: e})}
+          setValue={(e) => setform({...form, email: e })}
           otherStyles="mt-7"
           keyboardType="email-address"
           />
@@ -31,7 +32,7 @@ const SignIn = () => {
           <FormField
           title="Password"
           value={form.password}
-          setValue={(e) => setform({...form, password: e})}
+          setValue={(e) => setForm({...form, password: e })}
           otherStyles="mt-7 w-full"
           />
     
