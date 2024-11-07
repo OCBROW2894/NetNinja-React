@@ -23,10 +23,15 @@ export default function App() {
                   />
 
                   <View className="relative mt-5">
-                      <Text className="text-3xl font-bold text-white text-center">Discover Endless {'\n'} Possibilities with 
+                      <Text className="text-3xl font-bold text-white text-center">Discover Endless {'\n'} Possibilities with{" "}
                       <Text className="text-secondary-200"> Aora</Text>
                       </Text>
 
+                      <Image
+                        source={images.path}
+                        className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
+                        resizeMode="contain"
+                      />
 
                   </View>
 
