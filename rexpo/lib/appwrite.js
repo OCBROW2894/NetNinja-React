@@ -1,45 +1,78 @@
-import { Account, Client, ID } from 'react-native-appwrite';
-import { Avatars } from 'react-native-appwrite';
+import { Account, Client, ID, Avatars, Databases } from 'react-native-appwrite';
+import SignIn from '../app/(auth)/sign-in';
 
+// Configuration object for Appwrite
 export const config = {
-    endpoint: 'https://cloud.appwrite.io/v1',
-    platform: 'com.ocbrow.aora',
-    projectId: '672de793001a97a3092a',
-    databaseId: '672deaeb00174bd22c3b',
-    userCollectionId: '672deb3f001e1ad33764',
-    videoCollectionId: '672deba2002482045187',
-    storageId: '672defa40019caf73054'
+    endpoint: 'https://cloud.appwrite.io/v1',  // Appwrite API endpoint
+    platform: 'com.ocbrow.aora',               // Platform identifier
+    projectId: '672de793001a97a3092a',         // Project ID in Appwrite
+    databaseId: '672deaeb00174bd22c3b',        // Database ID in Appwrite
+    userCollectionId: '672deb3f001e1ad33764',  // User collection ID
+    videoCollectionId: '672deba2002482045187', // Video collection ID
+    storageId: '672defa40019caf73054'          // Storage ID
 }
 
-
-// Init your React Native SDK
+// Initialize the Appwrite client
 const client = new Client();
-const avatars = new Avatars(client);
 
 client
-    .setEndpoint(config.endpoint) // Your Appwrite Endpoint
-    .setProject(config.projectId) // Your project ID
-    .setPlatform(config.platform) // Your application ID or bundle ID.
+    .setEndpoint(config.endpoint) // Set the API endpoint
+    .setProject(config.projectId) // Set the project ID
+    .setPlatform(config.platform) // Set the platform ID
 
+// Initialize Appwrite services
+const account = new Account(client);  // Account service for user authentication
+const avatars = new Avatars(client);  // Avatars service for user avatars
+const databases = new Databases(client); // Databases service for data management
 
-const account = new Account(client);
-
-
+// Function to create a new user
 export const createUser = async (email, password, username) => {
     try {
-       const newAccount = await account.create(
-        ID.unique(),
-        email,
-        password,
-        username
-       )
+        // Create a new account with a unique ID
+        const newAccount = await account.create(
+            ID.unique(),  // Generate a unique ID for the user
+            email,        // User's email
+            password,     // User's password
+            username      // User's username
+        );
 
-       if(!newAccount) throw Error;
+        if (!newAccount) throw Error;  // Throw an error if account creation fails
 
-       const avatarUrl = avatars.getInitials(username);
+        // Get the user's avatar URL based on their initials
+        const avatarUrl = avatars.getInitials(username);
+
+        // Sign in the user immediately after account creation
+        await signIn(email, password);
+
+        // Create a new document in the user collection
+        const newUser = await databases.createDocument(
+            config.databaseId,       // Database ID
+            config.userCollectionId, // Collection ID for users
+            ID.unique(),             // Generate a unique ID for the document
+            {
+                accountId: newAccount.$id, // Store the account ID
+                email,                     // Store the email
+                username,                  // Store the username
+                avatar: avatarUrl          // Store the avatar URL
+            }
+        );
+
+        return newUser;  // Return the newly created user document
     } catch (error) {
-        console.log(error);
-        throw new Error(error);
+        console.log(error);  // Log any errors
+        throw new Error(error);  // Rethrow the error
     }
 }
 
+// Function to sign in a user
+export async function signIn(email, password) {
+    try {
+        // Create a session using email and password
+        const session = await account.createEmailPasswordSession(email, password);
+
+        return session;  // Return the session object
+    } catch (error) {
+        console.log(error);  // Log any errors
+        throw new Error(error);  // Rethrow the error
+    }
+}
