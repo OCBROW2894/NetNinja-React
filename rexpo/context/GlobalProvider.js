@@ -10,7 +10,7 @@ const GlobalProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        getCurrentUser
+        getCurrentUser()
         .then((res) => {
             if(res) {
                 setIsLoggedIn(true);
@@ -40,3 +40,5 @@ const GlobalProvider = ({children}) => {
         </GlobalContext.Provider>
     )
 }
+
+export default GlobalProvider;
