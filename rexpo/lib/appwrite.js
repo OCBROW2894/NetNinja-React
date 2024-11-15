@@ -76,22 +76,25 @@ export const signIn = async (email, password) => {
     }
 }
 
+// Function to get the current user
 export const getCurrentUser = async () => {
     try {
+        // Retrieve the current account details
         const currentAccount = await account.get();
 
-        if(!currentAccount) throw Error;
+        if(!currentAccount) throw Error;  // Throw an error if no account is found
 
+        // List documents in the user collection matching the current account ID
         const currentUser = await databases.listDocuments(
-            config.databaseId,
-            config.userCollectionId,
-            [Query.equal('accountId', currentAccount.$id)]
+            config.databaseId,       // Database ID
+            config.userCollectionId, // Collection ID for users
+            [Query.equal('accountId', currentAccount.$id)] // Query to match account ID
         );
 
-        if(!currentUser) throw Error;
+        if(!currentUser) throw Error;  // Throw an error if no user document is found
 
-        return currentUser.documents[0];
+        return currentUser.documents[0];  // Return the first matching user document
     } catch (error) {
-        console.log(error);
+        console.log(error);  // Log any errors
     }
 }
