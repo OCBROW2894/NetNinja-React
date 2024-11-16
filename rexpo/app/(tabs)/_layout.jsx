@@ -5,17 +5,28 @@ import { icons } from '../../constants';
 
 const TabIcon = ({color, focused, icon, name}) => {
     return (
-        <View className="items-center justify-center gap-2">
+        <View className="flex items-center justify-center gap-2">
             <Image
              source={icon}
              resizeMode="contain"
              tintColor={color}
              className="w-6 h-6"
               />
-              <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`} style={{color: color}} >{name}</Text>
+              <Text 
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs text-center`} 
+                style={{
+                    color: color,
+                    minWidth: 60,
+                    textAlign: 'center'
+                }}
+              >
+                {name}
+              </Text>
         </View>
-    )
-}
+    );
+};
 
 const TabsLayout = () => {
   return (
@@ -24,12 +35,12 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarShowLabel: false,
           tabBarActiveTintColor:'#FFA001',
-          tabBarInactiveTintColor: '#CDCDEO',
+          tabBarInactiveTintColor: '#CDCDE0',
           tabBarStyle: {
               backgroundColor: '#161622',
               borderTopWidth: 1,
               borderTopColor: '#232533',
-              height: 60,
+              height: 50,
           }
       }}
       >
@@ -53,7 +64,7 @@ const TabsLayout = () => {
               name="bookmark"
               options={{
                   headerShown: false,
-                  title: 'Bookmark',
+                  title: "Bookmark",
                   tabBarIcon: ({color, focused}) => (
                       <TabIcon
                           color={color}
@@ -101,4 +112,4 @@ const TabsLayout = () => {
   )
 }
 
-export default TabsLayout
+export default TabsLayout;
