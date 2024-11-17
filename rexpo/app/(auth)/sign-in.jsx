@@ -9,29 +9,34 @@ import { Link } from 'expo-router'
 import { signIn } from '../../lib/appwrite'
 
 const SignIn = () => {
+  const { setUser, setIsLogged } = useGlobalContext();
+  const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const submit= async () => {
-
-    if(!form.email || !form.password) {
-      Alert.alert("All fields are required");
+  const submit = async () => {
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "All fields are required");
     }
-    setIsSubmitting(true);
 
-    try{
-       await signIn(form.email, form.password);
+    setSubmitting(true);
 
-      router.replace('/home');
+    try {
+      await signIn(form.email, form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
+
+      Alert.alert("Success", "User signed in successfully");
+      router.replace("/home");
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert("Error", error.message);
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
