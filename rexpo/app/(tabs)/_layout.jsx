@@ -30,7 +30,7 @@ const TabIcon = ({color, focused, icon, name}) => {
                     textAlign: 'center'  // Center align text
                 }}
               >
-                {name}  // Display the name of the tab
+                {name}
               </Text>
         </View>
     );
@@ -48,7 +48,7 @@ const TabsLayout = () => {
         tabBarInactiveTintColor: '#CDCDE0', // Set inactive tab color to grey
         tabBarStyle: {
             backgroundColor: '#161622',  // Set dark background for tab bar
-            borderTopWidth: 2,  // Remove top border
+            borderTopWidth: 0,  // Remove top border
             borderTopColor: '#232533',   // Set subtle top border color
             height: 50,  // Set tab bar height
         }
