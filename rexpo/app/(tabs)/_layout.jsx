@@ -1,72 +1,77 @@
-// Import necessary components and utilities
+// Import core components from React Native for building UI
 import { View, Text, Image } from 'react-native'
+// Import navigation components from Expo Router
 import { Tabs, Redirect } from 'expo-router'
+// Import React library
 import React from 'react'
+// Import icons from a constants file
 import { icons } from '../../constants';
 
-// Custom TabIcon component to render each tab's icon and label
+// Define a custom component for rendering tab icons and labels
 const TabIcon = ({color, focused, icon, name}) => {
     return (
+        // Container for icon and label, centered with a gap between them
         <View className="flex items-center justify-center gap-2">
+            {/* Display the icon image with dynamic color and size */}
             <Image
              source={icon}
              resizeMode="contain"
-             tintColor={color}  // Changes the icon color based on tab state
-             className="w-6 h-6"
+             tintColor={color}  // Change icon color based on active state
+             className="w-6 h-6"  // Set icon size
               />
+              {/* Display the tab label with dynamic styling */}
               <Text 
-                numberOfLines={1}  // Limits text to single line
-                ellipsizeMode="tail"  // Adds ... if text is too long
-                // Changes font weight based on whether tab is focused
+                numberOfLines={1}  // Limit text to a single line
+                ellipsizeMode="tail"  // Add ellipsis if text overflows
                 className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs text-center`} 
                 style={{
-                    color: color,  // Applies active/inactive color
-                    minWidth: 60,  // Ensures minimum width for text
-                    textAlign: 'center'
+                    color: color,  // Apply active/inactive color
+                    minWidth: 60,  // Ensure minimum width for text
+                    textAlign: 'center'  // Center align text
                 }}
               >
-                {name}
+                {name}  // Display the name of the tab
               </Text>
         </View>
     );
 };
 
-// Main tab navigation layout component
+// Main component for tab navigation layout
 const TabsLayout = () => {
   return (
     <>
+      {/* Configure the tab navigation with custom options */}
       <Tabs
-      // Global configuration for all tabs
       screenOptions={{
-        tabBarShowLabel: false,  // Hides default tab labels
-        tabBarActiveTintColor:'#FFA001',    // Color when tab is active (orange)
-        tabBarInactiveTintColor: '#CDCDE0', // Color when tab is inactive (grey)
+        tabBarShowLabel: false,  // Hide default tab labels
+        tabBarActiveTintColor:'#FFA001',    // Set active tab color to orange
+        tabBarInactiveTintColor: '#CDCDE0', // Set inactive tab color to grey
         tabBarStyle: {
-            backgroundColor: '#161622',  // Dark background for tab bar
-            borderTopWidth: 1,
-            borderTopColor: '#232533',   // Subtle border at top of tab bar
-            height: 50,
+            backgroundColor: '#161622',  // Set dark background for tab bar
+            borderTopWidth: 2,  // Remove top border
+            borderTopColor: '#232533',   // Set subtle top border color
+            height: 50,  // Set tab bar height
         }
       }}
       >
-        {/* Home Tab Configuration */}
+        {/* Configure the Home tab */}
         <Tabs.Screen
          name="home" 
          options={{
-          headerShown: false,  // Hides the header
-          title: 'Home',
+          headerShown: false,  // Hide the header for this screen
+          title: 'Home',  // Set the title for accessibility
           tabBarIcon: ({color, focused}) => (
            <TabIcon
-           color={color}
-           focused={focused}
-           icon={icons.home}
-           name="Home"
+           color={color}  // Pass color to TabIcon
+           focused={focused}  // Pass focus state to TabIcon
+           icon={icons.home}  // Use home icon
+           name="Home"  // Set tab name
            />
           ),
          }}
          />
 
-          {/* Bookmark Tab Configuration */}
+          {/* Configure the Bookmark tab */}
           <Tabs.Screen
               name="bookmark"
               options={{
@@ -83,7 +88,7 @@ const TabsLayout = () => {
               }}
           />
 
-          {/* Create Post Tab Configuration */}
+          {/* Configure the Create Post tab */}
           <Tabs.Screen
               name="create"
               options={{
@@ -100,7 +105,7 @@ const TabsLayout = () => {
               }}
           />
 
-          {/* Profile Tab Configuration */}
+          {/* Configure the Profile tab */}
           <Tabs.Screen
               name="profile"
               options={{
@@ -121,4 +126,5 @@ const TabsLayout = () => {
   )
 }
 
+// Export the TabsLayout component as default
 export default TabsLayout;
