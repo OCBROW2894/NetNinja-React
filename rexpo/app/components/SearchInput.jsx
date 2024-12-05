@@ -12,13 +12,10 @@ const SearchInput = ({
     const [showPassword, setShowPassword] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
   return (
-    <View className={`space-y-2 ${otherStyles}`}>
-      <Text className="text-base text-gray-100 font-pmedium">{title}</Text>
-
-      <View className={`w-full h-16 px-4 bg-black-100 rounded-2xl border ${isFocused ? 'border-secondary' : 'border-black-200'} flex flex-row items-center`}>
+      <View className={`w-full h-16 px-4 bg-black-100 rounded-2xl border ${isFocused ? 'border-secondary' : 'border-black-200'} flex flex-row items-center space-x-4`}>
         <TextInput
-        className="flex-1 text-white font-psemibold text-base"
-        placeholder={placeholder}
+        className="flex-1 text-white font-psemibold text-base mt-0.5 font-pregular"
+        placeholder="Search For A Video Topic"
         placeholderTextColor="#7B7B8B"
         value={value}
         onChangeText={handleChangeText}
@@ -28,17 +25,14 @@ const SearchInput = ({
         {...props}
         />
 
-        {title === "Password" && (
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                <Image 
-                source= {!showPassword ? icons.eye : icons.eyeHide} 
-                className="w-6 h-6"
-                resizeMode="contain" 
-                />
-            </TouchableOpacity>
-            )}
+        <TouchableOpacity>
+            <Image
+            source={icons.search}
+            className="w-5 h-5"
+            resizeMode="contain"
+            />
+        </TouchableOpacity>
       </View>
-    </View>
   )
 }
 
