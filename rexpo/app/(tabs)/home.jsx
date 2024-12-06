@@ -13,6 +13,7 @@ const Home = () => {
   const onRefresh = async () => {
     setRefreshing(true);
     //re call videos -> if any videos appeared
+    setRefreshing(false);
   }
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -63,7 +64,7 @@ const Home = () => {
               subtitle="Be The Firstone to upload a video"
               />
             )}
-            refreshControl={<RefreshControl />}
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         />
     </SafeAreaView>
   )
