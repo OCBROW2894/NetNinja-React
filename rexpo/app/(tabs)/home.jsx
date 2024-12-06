@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
 import SearchInput from '../components/SearchInput'
 import Trending from '../components/Trending'
+
 const Home = () => {
   return (
     <SafeAreaView className="bg-primary">
@@ -46,6 +47,9 @@ const Home = () => {
                   />
                 </View>
               </View>
+            )}
+            ListEmptyComponent={()=>(
+              <Text className="text-white">Empty</Text>
             )}
         />
     </SafeAreaView>
