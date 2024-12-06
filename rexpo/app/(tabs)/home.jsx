@@ -49,7 +49,7 @@ const Home = () => {
               </View>
             )}
             ListEmptyComponent={()=>(
-              <Text className="text-white">Empty</Text>
+              <EmptyState/>
             )}
         />
     </SafeAreaView>
