@@ -12,6 +12,16 @@ export const config = {
     storageId: '672defa40019caf73054'          // Storage ID
 }
 
+const {
+    endpoint,
+    platform,
+    projectId,
+    databaseId,
+    userCollectionId,
+    videoCollectionId,
+    storageId
+} = config;
+
 // Initialize the Appwrite client
 const client = new Client();
 
@@ -98,3 +108,16 @@ export const getCurrentUser = async () => {
         console.log(error);  // Log any errors
     }
 }
+
+export const getAllPosts = async () => {
+    try {
+        const posts = await databases.listDocuments(
+            databaseId,
+            videoCollectionId,
+        );
+
+        return posts.documents;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
