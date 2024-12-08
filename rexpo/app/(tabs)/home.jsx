@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image, RefreshControl} from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
 import SearchInput from '../components/SearchInput'
@@ -8,8 +8,28 @@ import EmptyState from '../components/EmptyState'
 
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+
+      try {
+        const response = await getAllPosts();
+        setData(response);
+      } catch (error) {
+        Alert.alert("Error", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchData();
+  },[]);
+
+  console.log(data);
   const onRefresh = async () => {
     setRefreshing(true);
     //re call videos -> if any videos appeared
