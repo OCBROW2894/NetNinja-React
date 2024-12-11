@@ -29,7 +29,7 @@ const Home = () => {
            data={posts}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
-              <VideoCard />
+              <VideoCard video={item}/>
             )}
 
             ListHeaderComponent={()=> (
