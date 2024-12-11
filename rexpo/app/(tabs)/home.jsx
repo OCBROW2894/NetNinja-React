@@ -9,28 +9,8 @@ import { getAllPosts } from '../../lib/appwrite'
 
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      try {
-        const response = await getAllPosts();
-        setData(response);
-      } catch (error) {
-        Alert.alert("Error", error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchData();
-  },[]);
-
-  console.log(data);
   const onRefresh = async () => {
     setRefreshing(true);
     //re call videos -> if any videos appeared
