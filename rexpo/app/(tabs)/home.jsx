@@ -6,9 +6,11 @@ import SearchInput from '../components/SearchInput'
 import Trending from '../components/Trending'
 import EmptyState from '../components/EmptyState'
 import { getAllPosts } from '../../lib/appwrite'
+import useAppwrite from '../../lib/useAppwrite'
 
 
 const Home = () => {
+  const {data: posts} = useAppwrite(getAllPosts);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -16,6 +18,8 @@ const Home = () => {
     //re call videos -> if any videos appeared
     setRefreshing(false);
   }
+  console.log(posts);
+
   return (
     <SafeAreaView className="bg-primary h-full">
         <FlatList

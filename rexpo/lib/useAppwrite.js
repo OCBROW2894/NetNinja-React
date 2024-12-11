@@ -23,4 +23,4 @@ const useAppwrite = (fn) => {
   
     return { data}
 }
-export default useAppwrite;
+export default useAppwrite
