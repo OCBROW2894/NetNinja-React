@@ -5,11 +5,12 @@ import { images } from '../../constants'
 import SearchInput from '../components/SearchInput'
 import Trending from '../components/Trending'
 import EmptyState from '../components/EmptyState'
+import { getAllPosts } from '../../lib/appwrite'
 
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
