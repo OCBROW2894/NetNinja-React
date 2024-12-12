@@ -10,13 +10,13 @@ const zoomIn = {
     scale:0.9
 },
 1: {
-    scale:1,
+    scale:1.1,
   }
 }
 
 const zoomOut = {
   0: {
-    scale:1
+    scale:1.1
 },
 1: {
     scale:0.9,
@@ -53,7 +53,10 @@ const TrendingItem =({activeItem, item}) =>{
 }
 
 const Trending = ({posts}) => {
-  const [activeItem, setactiveItem] = useState(posts[0]);
+  const [activeItem, setactiveItem] = useState(posts[1]);
+  const viewableItemsChanged = ({viewableItems}) => {
+    setactiveItem(viewableItems[0].key);
+  }
   return (
     <FlatList
     data={posts}
@@ -61,6 +64,13 @@ const Trending = ({posts}) => {
     renderItem={({item}) => (
         <TrendingItem activeItem={activeItem} item={item} />
     )}
+
+    onViewableItemsChanged={viewableItemsChanged}
+    viewabilityConfig={{
+      itemVisiblePercentThreshold: 70
+    }}
+
+    contentOffset={{x: 170}}
     horizontal
     />
   )
