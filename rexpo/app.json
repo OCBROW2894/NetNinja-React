@@ -30,7 +30,9 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router", "expo-font"
+      "expo-router",
+      "expo-font",
+      "expo-video"
     ],
     "newArchEnabled": true
   }

@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import * as Animatable from 'react-native-animatable'; // For animation effects
 import { icons } from '../../constants'
-import { Video, ResizeMode } from 'expo-av'; // For video playback
+import Video from 'expo-video'; // For video playback
 
 // Animation configuration for zooming in effect
 const zoomIn = {
@@ -42,8 +42,8 @@ const TrendingItem = ({activeItem, item}) => {
         <Video
         source={{uri: item.video}}
         className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-        resizeMode={ResizeMode.CONTAIN}
-        useNativeControls
+        resizeMode="contain"
+        controls
         shouldPlay
         // Reset play state when video finishes
         onPlaybackStatusUpdate={(status)=> {
