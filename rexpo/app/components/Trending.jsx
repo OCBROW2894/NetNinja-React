@@ -83,7 +83,9 @@ const Trending = ({posts}) => {
   
   // Update active item when scroll position changes
   const viewableItemsChanged = ({viewableItems}) => {
-    setactiveItem(viewableItems[0].key);
+    if(viewableItems.length > 0) {
+      setactiveItem(viewableItems[0].key);
+    }
   }
 
   return (
