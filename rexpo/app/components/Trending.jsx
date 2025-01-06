@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import * as Animatable from 'react-native-animatable'; // For animation effects
 import { icons } from '../../constants'
-import Video from 'expo-video'; // For video playback
+import { Video } from 'expo-av'; // For video playback
 
 // Animation configuration for zooming in effect
 const zoomIn = {
@@ -40,17 +40,22 @@ const TrendingItem = ({activeItem, item}) => {
       {play ? (
         // Video player component shown when play is true
         <Video
-        source={{uri: item.video}}
-        className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-        resizeMode="contain"
-        controls
-        shouldPlay
-        // Reset play state when video finishes
-        onPlaybackStatusUpdate={(status)=> {
-          if(status.didJustFinish) {
-            setPlay(false);
-          }
-        }}
+          style={{
+            width: 208,
+            height: 288,
+            borderRadius: 35,
+            marginTop: 12,
+            backgroundColor: 'rgba(255, 255, 255, 0.1)'
+          }}
+          source={{uri: item.video}}
+          resizeMode="contain"
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPlay(false);
+            }
+          }}
         />
       ) : (
         // Thumbnail view shown when play is false
