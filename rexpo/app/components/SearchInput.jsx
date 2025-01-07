@@ -12,14 +12,20 @@ const SearchInput = () => {
         <TextInput
         className="flex-1 text-white font-psemibold text-base mt-0.5 font-pregular"
         placeholder="Search For A Video Topic"
-        placeholderTextColor="#7B7B8B"
+        placeholderTextColor="#CDCDE0"
         value={query}
         onChangeText={(e) => setQuery(e)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         />
 
-        <TouchableOpacity>
+        <TouchableOpacity 
+          onPress={() => {
+            if (!query) {
+              return Alert.alert("Missing Query", "Please enter a search query")
+            }
+          }}
+        >
             <Image
             source={icons.search}
             className="w-5 h-5"
