@@ -1,6 +1,7 @@
 import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { icons} from '../../constants';
+import { usePathname } from 'expo-router';
 
 const SearchInput = ({
     title,
@@ -9,7 +10,8 @@ const SearchInput = ({
     placeholder, 
     handleChangeText, 
     ...props}) => {
-    const [showPassword, setShowPassword] = useState(false);
+    const pathname = usePathname();
+    const [ query, setQuery ] = useState('');
     const [isFocused, setIsFocused] = useState(false);
   return (
       <View className={`w-full h-16 px-4 bg-black-100 rounded-2xl border ${isFocused ? 'border-secondary' : 'border-black-200'} flex flex-row items-center space-x-4`}>
