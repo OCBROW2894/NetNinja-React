@@ -3,13 +3,7 @@ import React, { useState } from 'react'
 import { icons} from '../../constants';
 import { usePathname } from 'expo-router';
 
-const SearchInput = ({
-    title,
-    value, 
-    otherStyles, 
-    placeholder, 
-    handleChangeText, 
-    ...props}) => {
+const SearchInput = () => {
     const pathname = usePathname();
     const [ query, setQuery ] = useState('');
     const [isFocused, setIsFocused] = useState(false);
@@ -19,12 +13,10 @@ const SearchInput = ({
         className="flex-1 text-white font-psemibold text-base mt-0.5 font-pregular"
         placeholder="Search For A Video Topic"
         placeholderTextColor="#7B7B8B"
-        value={value}
-        onChangeText={handleChangeText}
+        value={query}
+        onChangeText={(e) => setQuery(e)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        secureTextEntry={title === 'Password' && !showPassword}
-        {...props}
         />
 
         <TouchableOpacity>
