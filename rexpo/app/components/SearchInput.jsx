@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { icons} from '../../constants';
-import { usePathname } from 'expo-router';
+import { usePathname, router } from 'expo-router';
 
 const SearchInput = () => {
     const pathname = usePathname();
@@ -24,6 +24,9 @@ const SearchInput = () => {
             if (!query) {
               return Alert.alert("Missing Query", "Please enter a search query")
             }
+            //U can also use pathname.startsWith('/search') instead of pathname === '/search'
+            if (pathname === '/search') router.setParams({query})
+            else router.push(`/search/${query}`)
           }}
         >
             <Image
